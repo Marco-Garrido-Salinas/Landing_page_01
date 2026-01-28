@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Plantilla de landing page estática para GitHub Pages." />
+  <title>Proyecto · Página en GitHub</title>
+
+  <!-- Tipografías (seguras y rápidas). Puedes cambiar a Google Fonts si quieres. -->
+  <style>
+    :root{
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --border: rgba(255,255,255,.12);
+      --accent: #74d3ff;
+      --accent2: #a6ffcb;
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(116,211,255,.18), transparent 60%),
+        radial-gradient(900px 650px at 80% 30%, rgba(166,255,203,.14), transparent 55%),
+        linear-gradient(180deg, #070a14, #0b1020 35%, #070a14);
+      line-height:1.55;
+      letter-spacing:.2px;
+    }
+
+    a{ color: inherit; text-decoration:none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 24px; }
+
+    /* Header */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(7,10,20,.55);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing:.4px;
+    }
+
+    .logo{
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.9), rgba(255,255,255,.2) 45%, transparent 60%),
+        linear-gradient(135deg, rgba(116,211,255,.95), rgba(166,255,203,.9));
+      box-shadow: 0 10px 25px rgba(0,0,0,.35);
+    }
+
+    nav ul{
+      display:flex;
+      align-items:center;
+      gap: 18px;
+      list-style:none;
+      padding:0;
+      margin:0;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+
+    nav a{
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      transition: background .15s ease, color .15s ease;
+    }
+
+    nav a:hover{
+      color: var(--text);
+      text-decoration:none;
+      background: rgba(255,255,255,.06);
+    }
+
+    .cta{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,.18);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      user-select:none;
+      cursor:pointer;
+    }
+
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.18);
+      text-decoration:none;
+    }
+
+    .btn.primary{
+      border: 1px solid rgba(116,211,255,.35);
+      background: linear-gradient(135deg, rgba(116,211,255,.22), rgba(166,255,203,.16));
+    }
+
+    .btn svg{ width: 18px; height: 18px; opacity:.9; }
+
+    /* Hero */
+    .hero{
+      padding: 54px 0 26px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .kicker{
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      border-radius: 999px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 12px;
+      width: fit-content;
+    }
+
+    h1{
+      margin: 12px 0 10px;
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 1.06;
+      letter-spacing: .2px;
+    }
+
+    .lead{
+      color: var(--muted);
+      font-size: 16px;
+      margin: 12px 0 22px;
+      max-width: 60ch;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .stat .item{
+      border-radius: 16px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 14px;
+    }
+
+    .big{
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: .2px;
+    }
+
+    .small{
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    /* Sections */
+    section{ padding: 32px 0; }
+
+    .section-title{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing: .2px;
+    }
+
+    .hint{ color: var(--muted); font-weight: 600; font-size: 13px; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .grid .card{ padding: 18px; }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 10px;
+    }
+
+    .card p{ margin: 8px 0 0; color: var(--muted); }
+
+    .list{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .row{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+    }
+
+    .row strong{ display:block; }
+    .row .meta{ color: var(--muted); font-size: 13px; font-weight: 700; }
+
+    /* Footer */
+    footer{
+      border-top: 1px solid var(--border);
+      padding: 24px 0 40px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
+      nav ul{ gap: 8px; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ transition: none !important; scroll-behavior:auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Inicio">
+          <span class="logo" aria-hidden="true"></span>
+          <span>Tu Plataforma</span>
+        </a>
+
+        <nav aria-label="Navegación principal">
+          <ul>
+            <li><a href="#caracteristicas">Características</a></li>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#publicaciones">Publicaciones</a></li>
+            <li><a href="#equipo">Equipo</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+
+        <div class="cta">
+          <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2c5.52 0 10 4.48 10 10 0 4.42-2.87 8.17-6.84 9.49-.5.09-.68-.22-.68-.48v-1.69c0-.58-.2-.96-.42-1.16 1.37-.15 2.81-.67 2.81-3.02 0-.67-.24-1.22-.63-1.65.06-.16.27-.8-.06-1.66 0 0-.52-.17-1.7.63-.49-.14-1.02-.21-1.54-.21-.52 0-1.05.07-1.54.21-1.18-.8-1.7-.63-1.7-.63-.33.86-.12 1.5-.06 1.66-.39.43-.63.98-.63 1.65 0 2.34 1.43 2.87 2.8 3.02-.18.16-.34.43-.4.84-.36.16-1.28.44-1.85-.53 0 0-.34-.62-.98-.67 0 0-.62-.01-.04.39 0 0 .42.2.71.95 0 0 .38 1.18 2.14.78v1.23c0 .26-.18.57-.68.48A10.02 10.02 0 0 1 2 12C2 6.48 6.48 2 12 2Z" fill="currentColor" opacity=".9"/></svg>
+            GitHub
+          </a>
+          <a class="btn primary" href="#contacto">Solicitar demo</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div>
+        <div class="kicker">⚡ Sitio estático para GitHub Pages</div>
+        <h1>Una página clara, rápida y profesional para tu repositorio.</h1>
+        <p class="lead">
+          Plantilla lista para publicar en GitHub Pages. Estructura típica (hero, características, proyectos, publicaciones, equipo y contacto)
+          para que la adaptes a la página de referencia que tengas en mente.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#caracteristicas">Ver características</a>
+          <a class="btn" href="#proyectos">Explorar proyectos</a>
+          <a class="btn" href="#contacto">Contactar</a>
+        </div>
+      </div>
+
+      <div class="card" aria-label="Resumen">
+        <div class="section-title">
+          <h2>Resumen</h2>
+          <div class="hint">Edita estos valores</div>
+        </div>
+        <div class="stat">
+          <div class="item">
+            <div class="big">3</div>
+            <div class="small">líneas de trabajo</div>
+          </div>
+          <div class="item">
+            <div class="big">12+</div>
+            <div class="small">repositorios clave</div>
+          </div>
+          <div class="item">
+            <div class="big">2026</div>
+            <div class="small">actualización</div>
+          </div>
+          <div class="item">
+            <div class="big">MIT</div>
+            <div class="small">licencia sugerida</div>
+          </div>
+        </div>
+        <p style="margin:14px 2px 0;" class="hint">
+          Consejo: si tu página de referencia tiene un “look” particular (tipografía, colores, espaciado), cambia las variables CSS (arriba)
+          y la jerarquía (H1/H2) primero; luego ajusta componentes.
+        </p>
+      </div>
+    </section>
+
+    <section id="caracteristicas">
+      <div class="section-title">
+        <h2>Características</h2>
+        <div class="hint">Tres tarjetas (fácil de extender)</div>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="tag">Diseño</div>
+          <strong>Responsive y legible</strong>
+          <p>Funciona bien en móvil, tablet y escritorio. Tipografía del sistema para máxima velocidad.</p>
+        </article>
+        <article class="card">
+          <div class="tag">Rendimiento</div>
+          <strong>Sin dependencias</strong>
+          <p>Un solo archivo HTML con CSS embebido. Ideal para GitHub Pages y repos pequeños.</p>
+        </article>
+        <article class="card">
+          <div class="tag">Edición</div>
+          <strong>Rápido de adaptar</strong>
+          <p>Estructura modular por secciones. Cambia textos, enlaces y orden sin romper el layout.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="proyectos">
+      <div class="section-title">
+        <h2>Proyectos</h2>
+        <div class="hint">Lista tipo “cards”</div>
+      </div>
+      <div class="list">
+        <div class="row">
+          <div>
+            <strong>Proyecto A</strong>
+            <div class="meta">Breve descripción en 1–2 líneas (qué hace, para quién, valor).</div>
+          </div>
+          <a class="btn" href="#" aria-label="Abrir Proyecto A">Ver</a>
+        </div>
+        <div class="row">
+          <div>
+            <strong>Proyecto B</strong>
+            <div class="meta">Otra iniciativa, dataset, paquete o protocolo.</div>
+          </div>
+          <a class="btn" href="#" aria-label="Abrir Proyecto B">Ver</a>
+        </div>
+        <div class="row">
+          <div>
+            <strong>Proyecto C</strong>
+            <div class="meta">Incluye link al repo, paper, demo o documentación.</div>
+          </div>
+          <a class="btn" href="#" aria-label="Abrir Proyecto C">Ver</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="publicaciones">
+      <div class="section-title">
+        <h2>Publicaciones</h2>
+        <div class="hint">Formato “paper list”</div>
+      </div>
+      <div class="list">
+        <div class="row">
+          <div>
+            <strong>Título de publicación (Año)</strong>
+            <div class="meta">Autores · Revista/Conferencia · DOI/Link</div>
+          </div>
+          <a class="btn" href="#">PDF</a>
+        </div>
+        <div class="row">
+          <div>
+            <strong>Otra publicación (Año)</strong>
+            <div class="meta">Autores · Revista/Conferencia · DOI/Link</div>
+          </div>
+          <a class="btn" href="#">PDF</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="equipo">
+      <div class="section-title">
+        <h2>Equipo</h2>
+        <div class="hint">Tarjetas simples</div>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="tag">Rol</div>
+          <strong>Nombre Apellido</strong>
+          <p>1 frase: expertise/área. <a href="#">LinkedIn</a> · <a href="#">ORCID</a></p>
+        </article>
+        <article class="card">
+          <div class="tag">Rol</div>
+          <strong>Nombre Apellido</strong>
+          <p>1 frase: expertise/área. <a href="#">LinkedIn</a> · <a href="#">GitHub</a></p>
+        </article>
+        <article class="card">
+          <div class="tag">Rol</div>
+          <strong>Nombre Apellido</strong>
+          <p>1 frase: expertise/área. <a href="#">Correo</a> · <a href="#">Web</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="section-title">
+        <h2>Contacto</h2>
+        <div class="hint">Formulario sin backend (mailto)</div>
+      </div>
+      <div class="card">
+        <p style="margin-top:0; color: var(--muted);">
+          En GitHub Pages no hay backend por defecto. Si quieres un formulario real, la alternativa típica es usar Formspree, Getform o un
+          Google Form embebido. Abajo dejo una opción simple con <code>mailto:</code>.
+        </p>
+        <form id="contactForm" style="display:grid; gap: 12px; margin-top: 12px;" autocomplete="on">
+          <label>
+            <div class="hint">Nombre</div>
+            <input name="name" required placeholder="Tu nombre" style="width:100%; padding:12px 12px; border-radius:14px; border:1px solid var(--border); background: rgba(0,0,0,.25); color: var(--text);" />
+          </label>
+          <label>
+            <div class="hint">Correo</div>
+            <input name="email" type="email" required placeholder="tucorreo@dominio.com" style="width:100%; padding:12px 12px; border-radius:14px; border:1px solid var(--border); background: rgba(0,0,0,.25); color: var(--text);" />
+          </label>
+          <label>
+            <div class="hint">Mensaje</div>
+            <textarea name="message" required rows="5" placeholder="Escribe tu mensaje" style="width:100%; padding:12px 12px; border-radius:14px; border:1px solid var(--border); background: rgba(0,0,0,.25); color: var(--text);"></textarea>
+          </label>
+          <div style="display:flex; gap: 10px; flex-wrap: wrap;">
+            <button class="btn primary" type="submit">Enviar</button>
+            <a class="btn" href="#top">Volver arriba</a>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div style="display:flex; justify-content:space-between; gap: 14px; flex-wrap: wrap;">
+        <div>© <span id="year"></span> · Tu Plataforma</div>
+        <div>
+          <a href="#">Términos</a> · <a href="#">Privacidad</a> · <a href="#">Créditos</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Año automático
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Envío de formulario vía mailto (simple y compatible con GitHub Pages)
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const name = String(data.get('name') || '').trim();
+      const email = String(data.get('email') || '').trim();
+      const message = String(data.get('message') || '').trim();
+
+      const to = 'tu-correo@dominio.com'; // <-- CAMBIAR
+      const subject = encodeURIComponent(`[Contacto] ${name}`);
+      const body = encodeURIComponent(`Nombre: ${name}\nCorreo: ${email}\n\nMensaje:\n${message}`);
+
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
